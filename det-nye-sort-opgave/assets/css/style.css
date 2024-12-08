@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Lora", sans-serif;
+    transition: background-color 0.5s ease, color 0.5s ease; /* Laver denne transition, da jeg gerne vil give class "dark-mode" en smooth overgang, når der toggles mellem light og dark mode */
+}
+
+.dark-mode {
+    background-color: #212121;
+    color: white;
+}
+
+.mode-toggle {
+    position: fixed;
+    top: 40px;
+    right: 60px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: black;
+    transition: color 0.3s ease;
+    z-index: 9999;
+}
+
+#mode-icon {
+    font-size: 2rem;
+}
+
+body.dark-mode .mode-toggle {
+    color: white;
+}
+
+body.dark-mode .case h4,
+body.dark-mode .case p {
+    color: white;
+}
+
+main {
+    padding: 0 60px;
+}
+
+.caseoversigt-header {
+    margin-top: 12rem;
+    padding-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.caseoversigt-header h2 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.caseoversigt-header h2:first-child {
+    font-style: italic;
+    animation: hop 7s ease-in-out infinite;
+}
+
+@keyframes hop {
+    0%, 20% {
+        transform: translateY(0);
+    }
+    10% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+.caseoversigt-header h2:last-child {
+    font-weight: 400;
+}
+
+.article-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    grid-template-rows: auto;
+    margin-top: 2rem;
+    padding-bottom: 8rem;
+}
+
+.kolonne-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.kolonne-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+article {
+    margin-top: 5rem;
+}
+
+.case img {
+    max-height: 350px;
+    object-fit: cover;
+    width: 100%;
+    transition: box-shadow 0.3s ease;
+}
+
+.case:hover img {
+    box-shadow: 0 8px 12px rgba(0,0,0,0.3);
+}
+
+/* Her styler jeg load-in-animation */
+.case {
+    opacity: 0; /* Sætter opacity til 0, da det skal være usynligt til at starte med */
+    transform: translateY(50px) scale(0.95); /* Anvender translateY og scale til at gøre de forskellige cases mindre fra deres normale størrelse */
+    transition: opacity 0.7s ease-out, transform 0.3s ease-out; /* Tilføjer en transition hertil, da jeg gerne vil skabe en smooth overgang samt ændre størrelsesforholdene, når de forskellige cases bliver synlige */
+}
+
+/* Når de forskellige cases er synlige, sker der følgende */
+.case.visible {
+    opacity: 1; /* Sætter opacity til 1, da de skal vises nu */
+    transform: translateY(0) scale(1); /* Sætter translateY til at være 0 og scale til at være 1, som gør at de forskellige cases får deres normale størrelser */
+}
+
+.case:hover {
+    transform: scale(1.05);
+}
+
+.kultur-card {
+    background-color: #98ADEE;
+    color: black;
+    padding: 0 60px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.kultur-card h2 {
+    font-size: 3.5rem;
+    font-weight: 500;
+    margin-top: 5rem;
+}
+
+.kultur-card a {
+    margin-bottom: 4rem;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    padding: 20px 20px;
+    width: 330px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    transition: 0.3s ease-in-out;
+}
+
+.kultur-card a:hover {
+    background: black;
+    color: white;
+}
+
+/* Her er den samme styling fra class "case", bare brugt på class "kultur-card" nu */
+.kultur-card {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: opacity 0.7s ease-out, transform 0.3s ease-out;
+}
+
+/* Det samme gør sig gældende her. Jeg genbruger altså styling fra ".visible"-udgaven fra class "case" */
+.kultur-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.casenavn-og-detaljer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6rem;
+}
+
+.case a {
+    text-decoration: none;
+}
+
+.casenavn-og-detaljer h4,
+.casenavn-og-detaljer p {
+    color: black;
+}
+
+.casenavn-og-detaljer h4 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.casenavn-og-detaljer p {
+    font-size: 1rem;
+}
+
+@media (max-width: 1020px) {
+    .mode-toggle {
+        top: 40px;
+        right: 30px;
+    }
+    
+    main {
+        padding: 0 40px;
+    }
+    
+    .article-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .kolonne-1,
+    .kolonne-2 {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    article {
+        padding-bottom: 2rem;
+        margin-top: 2rem;
+    }
+
+    .caseoversigt-header h2 {
+        font-size: 1.75rem;
+    }
+
+    .case img {
+        max-height: 275px;
+    }
+
+    .casenavn-og-detaljer {
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-start;
+    }
+
+    .casenavn-og-detaljer h4 {
+        font-size: 1.25rem;
+    }
+
+    .casenavn-og-detaljer p {
+        font-size: 0.75rem;
+    }
+
+    .kultur-card h2 {
+        font-size: 3rem;
+    }
+
+    .kultur-card a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5rem;
+        font-size: 1rem;
+        width: 175px;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+    .case img {
+        max-height: 350px;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1019px) {
+    .case img {
+        max-height: 400px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .case img {
+        max-height: 650px;
+    }
+
+    .kultur-card {
+        padding: 2rem 110px;
+    }
+
+    .kultur-card h2 {
+        font-size: 5rem;
+    }
+}
